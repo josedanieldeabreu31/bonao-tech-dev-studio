@@ -190,7 +190,7 @@ html.mc :is(p, li, .meta, .cap) { animation: mcc 9s linear infinite; }
 <div id="start" role="dialog" aria-label="Pantalla de entrada">
   <div>
     <div class="t">BONAO<b> TECH</b></div>
-    <div class="p">DEV STUDIO · ACTUALIZACIÓN 2.2 BETA</div>
+    <div class="p">DEV STUDIO · ACTUALIZACIÓN 2.2</div>
     <button id="enter" class="btn" type="button">▶ ENTRAR AL LOBBY</button>
     <button id="enterq" class="b2" type="button">Entrar sin música</button>
   </div>
@@ -217,18 +217,18 @@ html.mc :is(p, li, .meta, .cap) { animation: mcc 9s linear infinite; }
 
   <div class="hero">
     <div>
-      <span class="badge">★ ACTUALIZACIÓN 2.2 BETA</span>
+      <span class="badge">★ ACTUALIZACIÓN 2.2</span>
       <h1>Tu PC y tus proyectos en <span>modo videojuego</span></h1>
       <p class="lead">Monitor de CPU, RAM y GPU en tiempo real, terminal integrada, optimizador de Windows con respaldo, siete temas de color y música de fondo. Hecho para desarrolladores y gamers.</p>
       <div class="cta">
         <a id="dl" class="btn" href="#instalar" aria-disabled="true">Descargar para Windows</a>
         <span class="meta" id="dlmeta">Descarga disponible muy pronto</span>
       </div>
-      <p class="meta" style="margin-top:16px"><a href="https://github.com/josedanieldeabreu31/bonao-tech-dev-studio/releases/download/v2.1/BonaoTechDevStudio-Setup.exe">Versión estable 2.1</a> · gratis · sin Python</p>
+      <p class="meta" style="margin-top:16px">Gratis · sin Python · versión oficial 2.2</p>
     </div>
     <div>
       <div class="win" role="img" aria-label="Demostración de la aplicación con barra animada de videojuegos, medidores de CPU, RAM y GPU, gráfica y terminal">
-        <div class="bar"><span>BONAO TECH DEV STUDIO 2.2 BETA</span><i>– ▢ ✕</i></div>
+        <div class="bar"><span>BONAO TECH DEV STUDIO 2.2</span><i>– ▢ ✕</i></div>
         <canvas id="cab" width="640" height="74"></canvas>
         <div class="tabs"><span>Panel</span><span>Optimizar</span><span>Windows</span><span>Dev</span><span>Notas</span></div>
         <div class="body">
@@ -257,13 +257,14 @@ RAM 51% | 8.1/15.9 GB</div>
   <section id="novedades">
     <span class="px">NIVEL NUEVO</span>
     <h2>Novedades de esta actualización</h2>
-    <p class="sub">La 2.2 Beta trae más sensores, más estilo y un optimizador de Windows completo.</p>
+    <p class="sub">La 2.2 trae más sensores, más estilo y un optimizador de Windows completo.</p>
     <div class="news">
       <div><h3>Reloj y gráfica de GPU</h3><p>Un tercer medidor animado y una línea verde en la gráfica. Funciona con NVIDIA, AMD Radeon e Intel.</p></div>
       <div><h3>Fondo de videojuegos</h3><p>Una barra animada con estrellas, suelo retro e invasores, fantasmas y mandos que cruzan la pantalla.</p></div>
       <div><h3>Siete temas, uno Multicolor</h3><p>El fondo, los paneles y el icono cambian con el tema. En Multicolor, todas las letras se mueven como un arcoíris.</p></div>
       <div><h3>Bienvenida y música gamer</h3><p>Al abrir, la app te saluda por tu nombre y suena una melodía retro a volumen bajo, que apagas con un clic.</p></div>
       <div><h3>Optimizar Windows</h3><p>Energía, efectos, privacidad y limpieza con punto de restauración, simulación previa y botón para revertir.</p></div>
+      <div><h3>Segundo plano y ajustes</h3><p>Al minimizar, la app sigue en la bandeja junto al reloj. En Ajustes puedes hacer que se inicie sola al encender el PC.</p></div>
       <div><h3>Cierre más seguro</h3><p>«Cerrar innecesarios» nunca propone tu navegador, Discord, VS Code ni los procesos esenciales de Windows.</p></div>
     </div>
   </section>
@@ -271,7 +272,7 @@ RAM 51% | 8.1/15.9 GB</div>
   <section id="funciones">
     <span class="px">INVENTARIO</span>
     <h2>Todo lo que incluye</h2>
-    <p class="sub">Todo en español y con identidad BONAO TECH. La versión 2.2 está en beta: si algo falla, cuéntanos.</p>
+    <p class="sub">Todo en español y con identidad BONAO TECH. Si algo falla o tienes una idea, cuéntanos.</p>
     <div class="feat">
       <div><span class="k">Monitor</span><h3>CPU, RAM y GPU en vivo</h3><p>Medidores animados y una gráfica con el historial del último minuto.</p></div>
       <div><span class="k">Terminal</span><h3>Terminal integrada</h3><p>Comandos propios como <code>cpu</code>, <code>ram</code> y <code>disco</code>, y también ejecuta comandos de Windows.</p></div>
@@ -313,7 +314,7 @@ RAM 51% | 8.1/15.9 GB</div>
   </section>
 
   <footer>
-    <span><strong style="color:var(--fg)">BONAO TECH</strong> · Dev Studio 2.2 Beta</span>
+    <span><strong style="color:var(--fg)">BONAO TECH</strong> · Dev Studio 2.2</span>
     <span>© 2026 BONAO TECH</span>
   </footer>
 </div>
@@ -338,7 +339,7 @@ var DOWNLOAD_URL = "https://github.com/josedanieldeabreu31/bonao-tech-dev-studio
 
   /* descarga */
   var a = $("dl"), m = $("dlmeta");
-  if (DOWNLOAD_URL) { a.href = DOWNLOAD_URL; a.removeAttribute("aria-disabled"); m.textContent = "Windows 10/11 · 64 bits · 2.2 Beta · 14 MB"; }
+  if (DOWNLOAD_URL) { a.href = DOWNLOAD_URL; a.removeAttribute("aria-disabled"); m.textContent = "Windows 10/11 · 64 bits · 2.2 · 16 MB"; }
 
   /* temas (igual que en la app) */
   var THEMES = { "Neón": ["#FF2BD6", "#00F0FF"], "Cian": ["#00E5FF", "#7C4DFF"], "Verde": ["#39FF88", "#00B894"], "Morado": ["#B388FF", "#FF4081"],
