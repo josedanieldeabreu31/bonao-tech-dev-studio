@@ -211,7 +211,7 @@ html.mc :is(p, li, .meta, .cap) { animation: mcc 9s linear infinite; }
 <div id="start" role="dialog" aria-label="Pantalla de entrada">
   <div>
     <div class="t">BONAO<b> TECH</b></div>
-    <div class="p">DEV STUDIO · ACTUALIZACIÓN 2.2</div>
+    <div class="p">DEV STUDIO · ACTUALIZACIÓN 2.3</div>
     <button id="enter" class="btn" type="button">▶ ENTRAR AL LOBBY</button>
     <button id="enterq" class="b2" type="button">Entrar sin música</button>
   </div>
@@ -260,7 +260,7 @@ html.mc :is(p, li, .meta, .cap) { animation: mcc 9s linear infinite; }
       <span class="tl">Tema</span>
       <div class="dots" id="dots" role="group" aria-label="Tema de color"></div>
       <div class="mus">
-        <button id="mbtn" type="button" aria-pressed="false">♫ Música: OFF</button>
+        <button id="mbtn" type="button" aria-pressed="false">♫ Música: OFF</button><span id="np" class="tl" aria-live="polite"></span>
         <input id="vol" type="range" min="0" max="100" value="30" aria-label="Volumen de la música">
       </div>
     </div>
@@ -268,18 +268,18 @@ html.mc :is(p, li, .meta, .cap) { animation: mcc 9s linear infinite; }
 
   <div class="hero">
     <div>
-      <span class="badge">★ ACTUALIZACIÓN 2.2</span>
+      <span class="badge">★ ACTUALIZACIÓN 2.3</span>
       <h1>Tu PC y tus proyectos en <span>modo videojuego</span></h1>
       <p class="lead">Monitor de CPU, RAM y GPU en tiempo real, terminal integrada, optimizador de Windows con respaldo, siete temas de color y música de fondo. Hecho para desarrolladores y gamers.</p>
       <div class="cta">
         <a id="dl" class="btn" href="#instalar" aria-disabled="true">Descargar para Windows</a>
         <span class="meta" id="dlmeta">Descarga disponible muy pronto</span>
       </div>
-      <p class="meta" style="margin-top:16px"><a href="#cuenta" data-cuenta>Crea tu cuenta gratis</a> para entrar a la app · sin Python · versión oficial 2.2</p>
+      <p class="meta" style="margin-top:16px"><a href="#cuenta" data-cuenta>Crea tu cuenta gratis</a> para entrar a la app · sin Python · versión oficial 2.3</p>
     </div>
     <div>
       <div class="win" role="img" aria-label="Demostración de la aplicación con barra animada de videojuegos, medidores de CPU, RAM y GPU, gráfica y terminal">
-        <div class="bar"><span>BONAO TECH DEV STUDIO 2.2</span><i>– ▢ ✕</i></div>
+        <div class="bar"><span>BONAO TECH DEV STUDIO 2.3</span><i>– ▢ ✕</i></div>
         <canvas id="cab" width="640" height="74"></canvas>
         <div class="tabs"><span>Panel</span><span>Optimizar</span><span>Windows</span><span>Dev</span><span>Notas</span></div>
         <div class="body">
@@ -308,7 +308,7 @@ RAM 51% | 8.1/15.9 GB</div>
   <section id="novedades">
     <span class="px">NIVEL NUEVO</span>
     <h2>Novedades de esta actualización</h2>
-    <p class="sub">La 2.2 trae más sensores, más estilo y un optimizador de Windows completo.</p>
+    <p class="sub">La 2.3 trae más sensores, más estilo y un optimizador de Windows completo.</p>
     <div class="news">
       <div><h3>Reloj y gráfica de GPU</h3><p>Un tercer medidor animado y una línea verde en la gráfica. Funciona con NVIDIA, AMD Radeon e Intel.</p></div>
       <div><h3>Fondo de videojuegos</h3><p>Una barra animada con estrellas, suelo retro e invasores, fantasmas y mandos que cruzan la pantalla.</p></div>
@@ -365,15 +365,16 @@ RAM 51% | 8.1/15.9 GB</div>
   </section>
 
   <footer>
-    <span><strong style="color:var(--fg)">BONAO TECH</strong> · Dev Studio 2.2</span>
+    <span><strong style="color:var(--fg)">BONAO TECH</strong> · Dev Studio 2.3</span>
     <span>© 2026 BONAO TECH</span>
+    <span id="creditos" style="flex-basis:100%;font-size:12px"></span>
   </footer>
 </div>
 
 <script>
 // Clave web de Firebase (Authentication). Mientras este vacia, el registro aparece como "muy pronto".
 var FIREBASE_API_KEY = "AIzaSyBQWo9vDp27g9JNK6i3QNB9rTMBUvB3NN0";
-var DOWNLOAD_URL = "https://github.com/josedanieldeabreu31/bonao-tech-dev-studio/releases/download/v2.2/BonaoTechDevStudio-Setup.exe";
+var DOWNLOAD_URL = "https://github.com/josedanieldeabreu31/bonao-tech-dev-studio/releases/download/v2.3/BonaoTechDevStudio-Setup.exe";
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   var root = document.documentElement;
@@ -392,7 +393,7 @@ var DOWNLOAD_URL = "https://github.com/josedanieldeabreu31/bonao-tech-dev-studio
 
   /* descarga */
   var a = $("dl"), m = $("dlmeta");
-  if (DOWNLOAD_URL) { a.href = DOWNLOAD_URL; a.removeAttribute("aria-disabled"); m.textContent = "Windows 10/11 · 64 bits · 2.2 · 16 MB"; }
+  if (DOWNLOAD_URL) { a.href = DOWNLOAD_URL; a.removeAttribute("aria-disabled"); m.textContent = "Windows 10/11 · 64 bits · 2.3 · 16 MB"; }
 
   /* temas (igual que en la app) */
   var THEMES = { "Neón": ["#FF2BD6", "#00F0FF"], "Cian": ["#00E5FF", "#7C4DFF"], "Verde": ["#39FF88", "#00B894"], "Morado": ["#B388FF", "#FF4081"],
@@ -578,7 +579,7 @@ var DOWNLOAD_URL = "https://github.com/josedanieldeabreu31/bonao-tech-dev-studio
   function tick() {
     while (nextT < ctxA.currentTime + 0.35) { sched(step, nextT); nextT += SP; step++; }
   }
-  function musicOn() {
+  function synthOn() {
     try {
       if (!ctxA) {
         ctxA = new (window.AudioContext || window.webkitAudioContext)();
@@ -594,14 +595,38 @@ var DOWNLOAD_URL = "https://github.com/josedanieldeabreu31/bonao-tech-dev-studio
     } catch (e) { on = false; }
     paint();
   }
-  function musicOff() {
+  function synthOff() {
     on = false; if (timer) { clearInterval(timer); timer = null; }
     if (ctxA) { ctxA.suspend(); nextT = ctxA.currentTime + 0.1; }
     paint();
   }
+  /* pistas completas: si existe musica/playlist.json se usan; si no, suena la melodia generada */
+  var PL = [], pi = 0, au = null;
+  fetch("musica/playlist.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : []; }).then(function (j) {
+    if (Array.isArray(j) && j.length) {
+      PL = j;
+      var cr = $("creditos");
+      if (cr) cr.textContent = "Música: " + j.map(function (t) { return t.title + (t.artist ? " — " + t.artist : "") + (t.license ? " (" + t.license + ")" : ""); }).join(" · ");
+    }
+  }).catch(function () {});
+  function aVol() { return Math.min(1, (+$("vol").value / 100) * 0.8); }
+  function playTrack() {
+    var t = PL[pi % PL.length];
+    if (!au) { au = new Audio(); au.addEventListener("ended", function () { pi++; playTrack(); }); au.addEventListener("error", function () { PL = []; synthOn(); }); }
+    au.src = "musica/" + t.file; au.volume = aVol();
+    var np = $("np"); if (np) np.textContent = "♪ " + t.title + (t.artist ? " — " + t.artist : "");
+    return au.play();
+  }
+  function musicOn() {
+    if (PL.length) {
+      on = true; paint();
+      var p = playTrack(); if (p && p.catch) p.catch(function () { on = false; paint(); });
+    } else synthOn();
+  }
+  function musicOff() { if (au) au.pause(); synthOff(); }
   function paint() { var b = $("mbtn"); b.textContent = "♫ Música: " + (on ? "ON" : "OFF"); b.setAttribute("aria-pressed", on ? "true" : "false"); store("bonao-musica", on ? "1" : "0"); }
   $("mbtn").addEventListener("click", function () { on ? musicOff() : musicOn(); });
-  $("vol").addEventListener("input", function () { if (master) master.gain.value = volVal(); store("bonao-vol", $("vol").value); });
+  $("vol").addEventListener("input", function () { if (master) master.gain.value = volVal(); if (au) au.volume = aVol(); store("bonao-vol", $("vol").value); });
   var sv = store("bonao-vol"); if (sv !== null && sv !== "") $("vol").value = sv;
   function enter(withMusic) { $("start").hidden = true; if (withMusic) musicOn(); }
   $("enter").addEventListener("click", function () { enter(true); });
