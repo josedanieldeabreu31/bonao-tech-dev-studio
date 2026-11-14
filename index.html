@@ -602,7 +602,7 @@ var DOWNLOAD_URL = "https://github.com/josedanieldeabreu31/bonao-tech-dev-studio
   }
   /* pistas completas: si existe musica/playlist.json se usan; si no, suena la melodia generada */
   var PL = [], pi = 0, au = null;
-  fetch("musica/playlist.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : []; }).then(function (j) {
+  var PLp = fetch("musica/playlist.json", { cache: "no-cache" }).then(function (r) { return r.ok ? r.json() : []; }).then(function (j) {
     if (Array.isArray(j) && j.length) {
       PL = j;
       var cr = $("creditos");
@@ -618,10 +618,12 @@ var DOWNLOAD_URL = "https://github.com/josedanieldeabreu31/bonao-tech-dev-studio
     return au.play();
   }
   function musicOn() {
-    if (PL.length) {
-      on = true; paint();
-      var p = playTrack(); if (p && p.catch) p.catch(function () { on = false; paint(); });
-    } else synthOn();
+    PLp.then(function () {
+      if (PL.length) {
+        on = true; paint();
+        var p = playTrack(); if (p && p.catch) p.catch(function () { on = false; paint(); });
+      } else synthOn();
+    });
   }
   function musicOff() { if (au) au.pause(); synthOff(); }
   function paint() { var b = $("mbtn"); b.textContent = "♫ Música: " + (on ? "ON" : "OFF"); b.setAttribute("aria-pressed", on ? "true" : "false"); store("bonao-musica", on ? "1" : "0"); }
