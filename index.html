@@ -167,6 +167,27 @@ h1 span { background: linear-gradient(90deg, var(--accent), var(--accent2), var(
   .brand b { animation: neon 2.4s ease-in-out infinite; }
   @keyframes neon { 50% { text-shadow: 0 0 16px var(--accent), 0 0 30px var(--accent); } }
 }
+
+/* cuenta */
+.btn-s { background: transparent; color: var(--fg); border: 1.5px solid var(--accent); border-radius: 999px; font: 700 12px/1 var(--mono); padding: 9px 14px; cursor: pointer; text-decoration: none; }
+.btn-s:hover { background: var(--accent); color: var(--on-accent); }
+#acct { position: fixed; inset: 0; z-index: 60; background: rgba(3, 2, 8, .78); display: flex; align-items: center; justify-content: center; padding: 16px; overflow-y: auto; }
+#acct[hidden] { display: none; }
+.card { width: 100%; max-width: 440px; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 26px 24px; box-shadow: 0 30px 80px -20px var(--accent); position: relative; }
+.card h2 { font-size: 22px; margin: 0 0 4px; }
+.card .x { position: absolute; top: 12px; right: 14px; background: none; border: 0; color: var(--muted); font-size: 22px; cursor: pointer; }
+.tabs2 { display: flex; gap: 6px; margin: 14px 0 16px; }
+.tabs2 button { flex: 1; background: var(--panel2); color: var(--muted); border: 0; border-radius: 6px; padding: 10px; font: 700 12px/1 var(--mono); cursor: pointer; }
+.tabs2 button[aria-selected="true"] { background: var(--accent); color: var(--on-accent); }
+.card label { display: block; font: 700 11px/1 var(--mono); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin: 12px 0 6px; }
+.card input[type=text], .card input[type=email], .card input[type=password] { width: 100%; background: var(--osc); color: var(--fg); border: 1px solid var(--line); border-radius: 6px; padding: 12px; font: 500 15px/1 var(--body); }
+.card input:focus { outline: 2px solid var(--accent2); }
+.card .chk { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: var(--muted); margin: 14px 0 0; }
+.card .go { width: 100%; margin-top: 18px; justify-content: center; }
+.fmsg { min-height: 20px; margin: 12px 0 0; font-size: 14px; }
+.fmsg.err { color: #ff6b8b; } .fmsg.ok { color: var(--ok); }
+.card .sm { font-size: 12px; color: var(--muted); margin: 14px 0 0; }
+
 /* tema Multicolor: letras animadas */
 html.mc :is(h1, h2, h3, .brand, .k, .px, nav.links a, dt, dd, .tl) {
   background-image: linear-gradient(90deg, #ff3b3b, #ffb13b, #fff23b, #3bff7a, #3bd5ff, #7a3bff, #ff3bd5, #ff3b3b);
@@ -196,6 +217,35 @@ html.mc :is(p, li, .meta, .cap) { animation: mcc 9s linear infinite; }
   </div>
 </div>
 
+
+<div id="acct" hidden role="dialog" aria-modal="true" aria-labelledby="acct-t">
+  <div class="card">
+    <button class="x" id="acct-x" type="button" aria-label="Cerrar">×</button>
+    <h2 id="acct-t">Tu cuenta BONAO TECH</h2>
+    <p class="sm" style="margin:0">Crea tu cuenta aquí y usa el mismo correo y contraseña para entrar a la app.</p>
+    <div class="tabs2" role="tablist">
+      <button type="button" role="tab" id="t-reg" aria-selected="true">Crear cuenta</button>
+      <button type="button" role="tab" id="t-rec" aria-selected="false">Olvidé mi contraseña</button>
+    </div>
+    <form id="f-reg" autocomplete="on">
+      <label for="r-user">Usuario</label><input id="r-user" type="text" autocomplete="username" maxlength="30" required>
+      <label for="r-mail">Correo electrónico</label><input id="r-mail" type="email" autocomplete="email" required>
+      <label for="r-pass">Contraseña (mínimo 8)</label><input id="r-pass" type="password" autocomplete="new-password" minlength="8" required>
+      <label for="r-pass2">Repite la contraseña</label><input id="r-pass2" type="password" autocomplete="new-password" minlength="8" required>
+      <label class="chk"><input id="r-ok" type="checkbox" required> <span>Acepto que usen mi correo solo para mi cuenta y para recuperar la contraseña.</span></label>
+      <button class="btn go" type="submit" id="r-go">CREAR CUENTA</button>
+      <p class="fmsg" id="r-msg" role="status"></p>
+    </form>
+    <form id="f-rec" hidden>
+      <label for="c-mail">Correo de tu cuenta</label><input id="c-mail" type="email" autocomplete="email" required>
+      <button class="btn go" type="submit" id="c-go">ENVIARME EL ENLACE</button>
+      <p class="fmsg" id="c-msg" role="status"></p>
+      <p class="sm">Te enviamos un correo con un enlace para elegir una contraseña nueva. Revisa también la carpeta de spam.</p>
+    </form>
+    <p class="fmsg err" id="off" hidden>Las cuentas estarán disponibles muy pronto.</p>
+  </div>
+</div>
+
 <div class="wrap">
   <header class="top">
     <div class="brand">BONAO<b> TECH</b></div>
@@ -204,6 +254,7 @@ html.mc :is(p, li, .meta, .cap) { animation: mcc 9s linear infinite; }
       <a href="#funciones">Funciones</a>
       <a href="#instalar">Instalación</a>
       <a href="#requisitos">Requisitos</a>
+      <a href="#cuenta" class="btn-s" data-cuenta>Crear cuenta</a>
     </nav>
     <div class="tools">
       <span class="tl">Tema</span>
@@ -224,7 +275,7 @@ html.mc :is(p, li, .meta, .cap) { animation: mcc 9s linear infinite; }
         <a id="dl" class="btn" href="#instalar" aria-disabled="true">Descargar para Windows</a>
         <span class="meta" id="dlmeta">Descarga disponible muy pronto</span>
       </div>
-      <p class="meta" style="margin-top:16px">Gratis · sin Python · versión oficial 2.2</p>
+      <p class="meta" style="margin-top:16px"><a href="#cuenta" data-cuenta>Crea tu cuenta gratis</a> para entrar a la app · sin Python · versión oficial 2.2</p>
     </div>
     <div>
       <div class="win" role="img" aria-label="Demostración de la aplicación con barra animada de videojuegos, medidores de CPU, RAM y GPU, gráfica y terminal">
@@ -320,6 +371,8 @@ RAM 51% | 8.1/15.9 GB</div>
 </div>
 
 <script>
+// Clave web de Firebase (Authentication). Mientras este vacia, el registro aparece como "muy pronto".
+var FIREBASE_API_KEY = "AIzaSyBQWo9vDp27g9JNK6i3QNB9rTMBUvB3NN0";
 var DOWNLOAD_URL = "https://github.com/josedanieldeabreu31/bonao-tech-dev-studio/releases/download/v2.2/BonaoTechDevStudio-Setup.exe";
 (function () {
   var $ = function (id) { return document.getElementById(id); };
@@ -440,6 +493,53 @@ var DOWNLOAD_URL = "https://github.com/josedanieldeabreu31/bonao-tech-dev-studio
     });
     ["cpu", "ram", "gpu"].forEach(function (k, n) { hist[k].push(gv[n].val); hist[k].shift(); $("g-" + k).setAttribute("points", pts(hist[k])); });
   }, 900);
+
+
+  /* cuenta: crear cuenta y recuperar contraseña (Firebase Authentication) */
+  (function () {
+    var KEY = (typeof FIREBASE_API_KEY !== "undefined") ? FIREBASE_API_KEY : "";
+    var box = $("acct");
+    function open() { box.hidden = false; if (!KEY) { $("off").hidden = false; $("f-reg").hidden = true; $("f-rec").hidden = true; } }
+    function close() { box.hidden = true; if (location.hash === "#cuenta") history.replaceState(null, "", location.pathname + location.search); }
+    [].forEach.call(document.querySelectorAll("[data-cuenta]"), function (b) { b.addEventListener("click", function (e) { e.preventDefault(); open(); }); });
+    $("acct-x").addEventListener("click", close);
+    box.addEventListener("click", function (e) { if (e.target === box) close(); });
+    addEventListener("keydown", function (e) { if (e.key === "Escape" && !box.hidden) close(); });
+    if (location.hash === "#cuenta") { $("start").hidden = true; open(); }
+    function tab(reg) { $("f-reg").hidden = !reg || !KEY; $("f-rec").hidden = reg || !KEY; $("t-reg").setAttribute("aria-selected", reg); $("t-rec").setAttribute("aria-selected", !reg); }
+    $("t-reg").addEventListener("click", function () { tab(true); });
+    $("t-rec").addEventListener("click", function () { tab(false); });
+    var ERR = { EMAIL_EXISTS: "Ya existe una cuenta con ese correo. Entra en la app o recupera tu contraseña.", INVALID_EMAIL: "El correo no es válido.",
+      WEAK_PASSWORD: "La contraseña es muy débil. Usa al menos 8 caracteres.", OPERATION_NOT_ALLOWED: "El registro aún no está activado.",
+      TOO_MANY_ATTEMPTS_TRY_LATER: "Demasiados intentos. Espera unos minutos." };
+    function call(ep, body) {
+      return fetch("https://identitytoolkit.googleapis.com/v1/accounts:" + ep + "?key=" + KEY, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+        .then(function (r) { return r.json().then(function (j) { if (!r.ok) { var c = (j.error && j.error.message) || "ERROR"; var e = new Error(c); e.code = c; throw e; } return j; }); });
+    }
+    function say(id, t, cls) { var m = $(id); m.textContent = t; m.className = "fmsg " + (cls || ""); }
+    function msgOf(e) { var c = String(e.code || ""); for (var k in ERR) if (c.indexOf(k) === 0) return ERR[k]; return e.code ? "No se pudo completar. Inténtalo de nuevo." : "No hay conexión. Inténtalo de nuevo."; }
+    $("f-reg").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var u = $("r-user").value.trim(), m = $("r-mail").value.trim(), p = $("r-pass").value;
+      if (p !== $("r-pass2").value) return say("r-msg", "Las contraseñas no coinciden.", "err");
+      if (p.length < 8) return say("r-msg", "La contraseña debe tener al menos 8 caracteres.", "err");
+      $("r-go").disabled = true; say("r-msg", "Creando tu cuenta...", "");
+      call("signUp", { email: m, password: p, returnSecureToken: true })
+        .then(function (r) { return call("update", { idToken: r.idToken, displayName: u, returnSecureToken: false }); })
+        .then(function () { say("r-msg", "¡Cuenta creada! Ya puedes descargar la app e iniciar sesión con tu correo y contraseña.", "ok"); $("f-reg").reset(); })
+        .catch(function (er) { say("r-msg", msgOf(er), "err"); })
+        .then(function () { $("r-go").disabled = false; });
+    });
+    $("f-rec").addEventListener("submit", function (e) {
+      e.preventDefault();
+      $("c-go").disabled = true; say("c-msg", "Enviando...", "");
+      call("sendOobCode", { requestType: "PASSWORD_RESET", email: $("c-mail").value.trim() })
+        .then(function () { return null; }, function (er) { if (!er.code) throw er; return null; })
+        .then(function () { say("c-msg", "Si ese correo tiene una cuenta, te enviamos el enlace. Revisa también el spam.", "ok"); })
+        .catch(function () { say("c-msg", "No hay conexión. Inténtalo de nuevo.", "err"); })
+        .then(function () { $("c-go").disabled = false; });
+    });
+  })();
 
   /* musica de lobby (se genera en el navegador, sin archivos) */
   var ctxA = null, master, on = false, timer = null, nextT = 0, step = 0, noiseBuf;
